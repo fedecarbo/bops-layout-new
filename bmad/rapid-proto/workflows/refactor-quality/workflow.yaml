@@ -1,0 +1,29 @@
+# Refactor Quality Workflow Configuration
+name: refactor-quality
+description: "Improve code quality, performance, and maintainability through systematic refactoring"
+author: "Fede"
+
+# Critical variables load from config_source
+config_source: "{project-root}/bmad/rapid-proto/config.yaml"
+module_root: "{config_source}:module_root"
+
+# Context system for tracking
+context_docs_path: "{project-root}/docs/rapid-prototype"
+refactor_log: "{context_docs_path}/refactor-log.md"
+
+# Module path and component files
+installed_path: "{project-root}/bmad/rapid-proto/workflows/refactor-quality"
+template: false # Action workflow - no template document
+instructions: "{installed_path}/instructions.md"
+validation: "{installed_path}/checklist.md"
+
+# Refactor types
+refactor_types:
+  - type_safety # Fix TypeScript issues
+  - performance # Optimize performance
+  - structure # Improve organization
+  - patterns # Apply best practices
+  - accessibility # Enhance a11y
+  - full # All of the above
+
+standalone: true

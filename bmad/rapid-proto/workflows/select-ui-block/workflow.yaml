@@ -1,0 +1,91 @@
+# Select UI Block Workflow
+# Intelligent component discovery and selection from Tailwind UI Blocks library
+# Part of rapid-proto module
+
+name: "Select UI Block"
+version: "1.0.0"
+description: "Intelligently search and select production-ready UI components from the Tailwind UI Blocks library based on user requirements"
+
+# Workflow metadata
+metadata:
+  category: "component-selection"
+  tags:
+    - ui-blocks
+    - component-discovery
+    - tailwind-ui
+    - intelligent-search
+
+  target_agents:
+    - builder  # Forge
+    - prototype-architect  # Atlas
+
+  estimated_duration: "2-5 minutes"
+  complexity: "low"
+
+# Workflow steps
+steps:
+  - id: "understand-requirements"
+    name: "Understand Requirements"
+    description: "Analyze what the user wants to build"
+
+  - id: "load-knowledge"
+    name: "Load UI Blocks Knowledge"
+    description: "Load catalog and essentials for component search"
+
+  - id: "search-components"
+    name: "Search Components"
+    description: "Find matching components by category, tags, and use case"
+
+  - id: "present-options"
+    name: "Present Options"
+    description: "Show 3-5 best matching components with previews"
+
+  - id: "retrieve-code"
+    name: "Retrieve Code"
+    description: "Load selected component's production code"
+
+  - id: "deliver-component"
+    name: "Deliver Component"
+    description: "Provide component code and usage instructions"
+
+# Input requirements
+inputs:
+  user_request:
+    type: "string"
+    required: true
+    description: "What the user wants to build (e.g., 'login page', 'dashboard layout', 'data table')"
+
+  search_filters:
+    type: "object"
+    required: false
+    description: "Optional filters (category, tags, style preferences)"
+    properties:
+      category: "string"  # e.g., 'forms', 'navigation', 'application-shells'
+      tags: "array"       # e.g., ['dark', 'responsive', 'search']
+      style: "string"     # e.g., 'dark', 'light', 'modern'
+
+# Output
+outputs:
+  selected_component:
+    type: "object"
+    description: "Selected component with metadata and code"
+    properties:
+      file_path: "string"
+      variant: "string"
+      category: "string"
+      element: "string"
+      tags: "array"
+      dependencies: "array"
+      code: "string"
+
+  related_components:
+    type: "array"
+    description: "Related components that might be useful"
+
+# Configuration
+config:
+  max_options: 5
+  min_options: 3
+  default_search_strategy: "use-case-first"  # or "tag-first", "category-first"
+  include_related: true
+  show_code_preview: true

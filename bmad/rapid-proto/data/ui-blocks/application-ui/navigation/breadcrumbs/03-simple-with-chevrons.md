@@ -1,0 +1,68 @@
+---
+group: Application UI
+category: Navigation
+element: Breadcrumbs
+variant: Simple with chevrons
+tech: React
+tailwind: v4.1
+deps:
+  - '@heroicons/react/20/solid'
+tags:
+  - breadcrumbs
+  - navigation
+  - dark
+  - simple
+  - home-icon
+  - chevron
+a11y:
+  - nav landmark with aria-label
+  - list structure with role="list"
+  - aria-current for current page
+  - sr-only label for home icon
+  - aria-hidden on decorative chevron icons
+notes: |
+  Simple dark breadcrumb navigation without background container.
+  Uses ChevronRightIcon separators instead of custom SVG paths.
+  Home icon in text-gray-500 with hover state, items aligned with items-center.
+  Minimal spacing with space-x-4 and ml-4 on labels, clean and lightweight design.
+---
+
+```tsx
+import { ChevronRightIcon, HomeIcon } from '@heroicons/react/20/solid'
+
+const pages = [
+  { name: 'Projects', href: '#', current: false },
+  { name: 'Project Nero', href: '#', current: true },
+]
+
+export default function Example() {
+  return (
+    <nav aria-label="Breadcrumb" className="flex">
+      <ol role="list" className="flex items-center space-x-4">
+        <li>
+          <div>
+            <a href="#" className="text-gray-500 hover:text-gray-300">
+              <HomeIcon aria-hidden="true" className="size-5 shrink-0" />
+              <span className="sr-only">Home</span>
+            </a>
+          </div>
+        </li>
+        {pages.map((page) => (
+          <li key={page.name}>
+            <div className="flex items-center">
+              <ChevronRightIcon aria-hidden="true" className="size-5 shrink-0 text-gray-500" />
+              <a
+                href={page.href}
+                aria-current={page.current ? 'page' : undefined}
+                className="ml-4 text-sm font-medium text-gray-400 hover:text-gray-200"
+              >
+                {page.name}
+              </a>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+```

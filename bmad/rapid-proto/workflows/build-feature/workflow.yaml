@@ -1,0 +1,31 @@
+# Build Feature Workflow Configuration
+name: build-feature
+description: "Implement a complete feature with pages, components, mock data, and integration"
+author: "Fede"
+
+# Critical variables load from config_source
+config_source: "{project-root}/bmad/rapid-proto/config.yaml"
+module_root: "{config_source}:module_root"
+
+# Context system for tracking
+context_docs_path: "{project-root}/docs/rapid-prototype"
+build_log: "{context_docs_path}/build-log.md"
+
+# Module path and component files
+installed_path: "{project-root}/bmad/rapid-proto/workflows/build-feature"
+template: false # Action workflow - no template document
+instructions: "{installed_path}/instructions.md"
+validation: "{installed_path}/checklist.md"
+
+# Feature configuration
+feature_includes:
+  - pages # One or more pages
+  - components # Feature-specific components
+  - mock_data # Type-safe mock data
+  - integration # Data-component integration
+
+# Related workflows to invoke
+create_page_workflow: "{project-root}/bmad/rapid-proto/workflows/create-page/workflow.yaml"
+create_component_workflow: "{project-root}/bmad/rapid-proto/workflows/create-component/workflow.yaml"
+
+standalone: true

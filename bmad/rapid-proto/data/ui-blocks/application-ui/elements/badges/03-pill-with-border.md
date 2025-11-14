@@ -1,0 +1,54 @@
+---
+group: Application UI
+category: Elements
+element: Badges
+variant: Pill with border
+tech: React
+tailwind: v4.1
+deps: []
+tags:
+  - badge
+  - status
+  - label
+  - pill
+  - bordered
+  - rounded-full
+  - color-variants
+a11y:
+  - semantic span elements
+notes: |-
+  Pill-shaped badges with rounded-full and subtle inset-ring borders. Same color system as standard badges but with fully rounded ends. Eight color variants with coordinated backgrounds, text, and border colors.
+---
+
+```tsx
+export default function Example() {
+  return (
+    <>
+      <span className="inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 inset-ring inset-ring-gray-500/10">
+        Badge
+      </span>
+      <span className="inline-flex items-center rounded-full bg-red-50 px-2 py-1 text-xs font-medium text-red-700 inset-ring inset-ring-red-600/10">
+        Badge
+      </span>
+      <span className="inline-flex items-center rounded-full bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 inset-ring inset-ring-yellow-600/20">
+        Badge
+      </span>
+      <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 inset-ring inset-ring-green-600/20">
+        Badge
+      </span>
+      <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 inset-ring inset-ring-blue-700/10">
+        Badge
+      </span>
+      <span className="inline-flex items-center rounded-full bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 inset-ring inset-ring-indigo-700/10">
+        Badge
+      </span>
+      <span className="inline-flex items-center rounded-full bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 inset-ring inset-ring-purple-700/10">
+        Badge
+      </span>
+      <span className="inline-flex items-center rounded-full bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 inset-ring inset-ring-pink-700/10">
+        Badge
+      </span>
+    </>
+  )
+}
+```

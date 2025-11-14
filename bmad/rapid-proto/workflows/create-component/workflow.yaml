@@ -1,0 +1,33 @@
+# Create Component Workflow Configuration
+name: create-component
+description: "Create a new UI component with Catalyst UI patterns, type safety, and best practices"
+author: "Fede"
+
+# Critical variables load from config_source
+config_source: "{project-root}/bmad/rapid-proto/config.yaml"
+module_root: "{config_source}:module_root"
+catalyst_components: "{config_source}:catalyst_components"
+
+# Context system for tracking
+context_docs_path: "{project-root}/docs/rapid-prototype"
+build_log: "{context_docs_path}/build-log.md"
+
+# Module path and component files
+installed_path: "{project-root}/bmad/rapid-proto/workflows/create-component"
+template: false # Action workflow - no template document
+instructions: "{installed_path}/instructions.md"
+validation: "{installed_path}/checklist.md"
+
+# Component configuration
+component_types:
+  - ui # Catalyst-based UI component
+  - shared # Custom shared component
+  - feature # Feature-specific component
+
+# Default paths in target project
+target_project_root: "{{project_root}}" # Where the prototype lives
+components_path: "{{project_root}}/components"
+catalyst_path: "{{project_root}}/components/catalyst"
+shared_path: "{{project_root}}/components/shared"
+
+standalone: true

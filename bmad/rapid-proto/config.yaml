@@ -1,0 +1,70 @@
+# Rapid Prototype Module Configuration
+module_name: Rapid Prototype
+module_code: rapid-proto
+author: Fede
+description: Zero-friction Next.js 16 prototype scaffolding system with Turbopack, Tailwind v4.1, automated mock data infrastructure, and context-aware documentation for seamless AI agent collaboration
+
+# Module paths
+module_root: "{project-root}/bmad/rapid-proto"
+installer_path: "{project-root}/bmad/rapid-proto/_module-installer"
+
+# Component counts
+agents:
+  count: 3
+  list:
+    - prototype-architect
+    - builder
+    - qa-refactor
+
+workflows:
+  count: 8
+  list:
+    - rapid-prototype
+    - setup-docker
+    - select-ui-block
+    - create-component
+    - create-page
+    - build-feature
+    - review-code
+    - refactor-quality
+
+tasks:
+  count: 0
+  list: []
+
+# Tech Stack Configuration
+tech_stack:
+  framework: "Next.js 16"
+  language: "TypeScript 5.1+ (strict mode)"
+  styling: "Tailwind CSS v4.1 (PostCSS)"
+  ui_components: "Catalyst UI (Tailwind UI Kit)"
+  router: "App Router"
+  features: "Server Components, Turbopack"
+  bundler: "Turbopack (2-5× faster builds)"
+
+# Context Handoff System
+context_system:
+  docs_path: "{project-root}/docs/rapid-prototype"
+  tracking_files:
+    - project-brief.md
+    - build-log.md
+    - changes-log.md
+    - refactor-log.md
+    - context-summary.md
+
+# Output configuration
+output_folder: "{project-root}/docs/rapid-proto"
+data_folder: "{module_root}/data"
+
+# UI Component Libraries
+catalyst_ui_kit: "{module_root}/data/catalyst-ui-kit"
+catalyst_components:
+  javascript: "{module_root}/data/catalyst-ui-kit/javascript"
+  typescript: "{module_root}/data/catalyst-ui-kit/typescript"
+  demo: "{module_root}/data/catalyst-ui-kit/demo"
+
+# Tailwind UI Blocks Library (347 production-ready components)
+ui_blocks_library: "{module_root}/data/ui-blocks"
+ui_blocks_path: "{module_root}/data/ui-blocks/application-ui"
+ui_blocks_catalog: "{project-root}/bmad/tech-kb/tailwind-ui-blocks/catalog.md"
+ui_blocks_essentials: "{project-root}/bmad/tech-kb/tailwind-ui-blocks/essentials.md"

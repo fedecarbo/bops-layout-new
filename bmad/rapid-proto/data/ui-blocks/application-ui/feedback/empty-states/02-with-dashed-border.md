@@ -1,0 +1,47 @@
+---
+group: Application UI
+category: Feedback
+element: Empty States
+variant: With dashed border
+tech: React
+tailwind: v4.1
+deps: []
+tags:
+  - empty-state
+  - feedback
+  - dashed-border
+  - clickable
+a11y:
+  - aria-hidden on decorative icons
+  - keyboard focus indicators
+notes: |
+  Full-width clickable empty state styled as a button with dashed border.
+  Entire area is interactive using button element. Ideal for file/database creation.
+---
+
+```tsx
+export default function Example() {
+  return (
+    <button
+      type="button"
+      className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600"
+    >
+      <svg
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 48 48"
+        aria-hidden="true"
+        className="mx-auto size-12 text-gray-400"
+      >
+        <path
+          d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M8 14c0 4.418 7.163 8 16 8s16-3.582 16-8M8 14c0-4.418 7.163-8 16-8s16 3.582 16 8m0 0v14m0-4c0 4.418-7.163 8-16 8S8 28.418 8 24m32 10v6m0 0v6m0-6h6m-6 0h-6"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      <span className="mt-2 block text-sm font-semibold text-gray-900">Create a new database</span>
+    </button>
+  )
+}
+```

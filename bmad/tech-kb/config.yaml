@@ -1,0 +1,73 @@
+# Tech Knowledge Base Module Configuration
+# Part of BMAD-CORE™ ecosystem
+# Version: 1.0.0
+# Purpose: Centralized technical knowledge repository for agent reference
+
+module_name: "Tech Knowledge Base"
+module_code: "tech-kb"
+version: "1.0.0"
+
+# Module metadata
+description: "Centralized repository of technical knowledge and best practices for modern web technologies. Ensures agents work with current versions and avoid outdated patterns."
+
+# Knowledge domains covered
+domains:
+  - tailwind-v4        # Tailwind CSS v4.1+ setup and patterns
+  - catalyst-ui        # Catalyst UI component patterns and best practices
+  - tailwind-ui-blocks # Tailwind UI Blocks library - 347 production-ready components
+
+# Integration instructions
+integration:
+  target_agents:
+    - "bmad/rapid-proto/agents/prototype-architect.md"  # Atlas
+    - "bmad/rapid-proto/agents/builder.md"              # Forge
+
+  load_strategy: "on-demand"  # Load specific KB sections when needed
+
+  triggers:
+    tailwind_v4:
+      condition: "Tailwind CSS v4+ detected in dependencies or setup phase"
+      files_to_load:
+        - "{project-root}/bmad/tech-kb/tailwind-v4/essentials.md"
+        - "{project-root}/bmad/tech-kb/tailwind-v4/troubleshooting.md"
+
+    catalyst_ui:
+      condition: "Creating or working with Catalyst UI components"
+      files_to_load:
+        - "{project-root}/bmad/tech-kb/catalyst-ui/essentials.md"
+        - "{project-root}/bmad/tech-kb/catalyst-ui/troubleshooting.md"
+
+    tailwind_ui_blocks:
+      condition: "Building pages, components, or features that require UI composition"
+      files_to_load:
+        - "{project-root}/bmad/tech-kb/tailwind-ui-blocks/essentials.md"
+        - "{project-root}/bmad/tech-kb/tailwind-ui-blocks/catalog.md"
+      notes: "Load catalog.md for searching components, essentials.md for usage patterns"
+
+# Context7 fallback
+context7_enabled: true
+context7_libraries:
+  tailwind:
+    primary: "/tailwindlabs/tailwindcss.com"
+    trust_score: 10
+    fallback: "/websites/tailwindcss"
+  catalyst:
+    primary: "/tailwindlabs/catalyst"
+    trust_score: 10
+    fallback: "/tailwindlabs/headlessui.com"
+  headlessui:
+    primary: "/tailwindlabs/headlessui.com"
+    trust_score: 10
+  tailwind_ui:
+    primary: "/tailwindlabs/tailwindui.com"
+    trust_score: 10
+    fallback: "/websites/tailwindui"
+
+# UI Blocks library location
+ui_blocks_location: "{module_root}/data/ui-blocks/application-ui/"
+
+# Future expansion
+future_domains:
+  - react-19      # React 19 patterns and features
+  - next-16       # Next.js 16 app router patterns
+  - typescript-5  # TypeScript 5+ features
