@@ -1,10 +1,8 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  experimental: {
-    // Enable Turbopack for faster builds
-    turbo: {},
-  },
+  // Turbopack is enabled by default in Next.js 16
+  // No experimental config needed
 }
 
 export default nextConfig
