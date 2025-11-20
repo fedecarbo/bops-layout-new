@@ -1,0 +1,162 @@
+/* Sidebar Theme System - CSS Custom Properties */
+/* Allows runtime switching between different sidebar color schemes */
+
+/* Light Theme - Clean white sidebar with blue accents */
+[data-sidebar-theme='light'] {
+  --sidebar-bg: #ffffff;
+  --sidebar-border: var(--color-gray-100);
+
+  --sidebar-text-default: var(--color-blue-500);
+  --sidebar-text-hover: var(--color-blue-600);
+  --sidebar-text-active: var(--color-gray-900);
+
+  --sidebar-bg-hover: var(--color-gray-50);
+  --sidebar-bg-active: var(--color-gray-50);
+
+  --sidebar-icon-default: var(--color-gray-300);
+  --sidebar-icon-hover: var(--color-blue-500);
+  --sidebar-icon-active: var(--color-gray-900);
+
+  --sidebar-heading: var(--color-gray-300);
+  --sidebar-divider: var(--color-gray-100);
+
+  --sidebar-checkbox-complete-border: var(--color-blue-400);
+  --sidebar-checkbox-complete-bg: var(--color-blue-500);
+  --sidebar-checkbox-complete-check: #ffffff;
+  --sidebar-checkbox-incomplete-border: var(--color-gray-200);
+  --sidebar-checkbox-incomplete-bg: transparent;
+
+  /* Case Summary */
+  --case-summary-bg: #ffffff;
+  --case-summary-border: var(--color-gray-100);
+  --case-summary-text-primary: var(--color-gray-900);
+  --case-summary-text-secondary: var(--color-gray-500);
+  --case-summary-divider: var(--color-gray-200);
+}
+
+/* Dark Theme - Dark gray sidebar following Tailwind UI dark theme pattern */
+[data-sidebar-theme='dark'] {
+  /* Background - dark gray base */
+  --sidebar-bg: var(--color-gray-900);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+
+  /* Text - light gray to white progression */
+  --sidebar-text-default: var(--color-gray-100);
+  --sidebar-text-hover: #ffffff;
+  --sidebar-text-active: #ffffff;
+
+  /* Backgrounds - white overlays for depth */
+  --sidebar-bg-hover: rgba(255, 255, 255, 0.05);
+  --sidebar-bg-active: rgba(255, 255, 255, 0.05);
+
+  /* Icons - match text colors */
+  --sidebar-icon-default: var(--color-gray-100);
+  --sidebar-icon-hover: #ffffff;
+  --sidebar-icon-active: #ffffff;
+
+  /* Headings */
+  --sidebar-heading: var(--color-gray-100);
+  --sidebar-divider: rgba(255, 255, 255, 0.1);
+
+  /* Checkboxes - blue accent for completed */
+  --sidebar-checkbox-complete-border: var(--color-blue-300);
+  --sidebar-checkbox-complete-bg: var(--color-blue-400);
+  --sidebar-checkbox-complete-check: #ffffff;
+  --sidebar-checkbox-incomplete-border: rgba(255, 255, 255, 0.2);
+  --sidebar-checkbox-incomplete-bg: transparent;
+
+  /* Case Summary - slightly lighter than sidebar */
+  --case-summary-bg: var(--color-gray-800);
+  --case-summary-border: rgba(255, 255, 255, 0.1);
+  --case-summary-text-primary: #ffffff;
+  --case-summary-text-secondary: var(--color-gray-100);
+  --case-summary-divider: rgba(255, 255, 255, 0.2);
+}
+
+/* Brand Theme - Blue brand sidebar with color harmony throughout */
+[data-sidebar-theme='brand'] {
+  /* Background - GOV.UK primary blue */
+  --sidebar-bg: var(--color-blue-500);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+
+  /* Text - light blue to white progression */
+  --sidebar-text-default: var(--color-blue-50);
+  --sidebar-text-hover: #ffffff;
+  --sidebar-text-active: #ffffff;
+
+  /* Backgrounds - darker blue overlays */
+  --sidebar-bg-hover: rgba(14, 77, 136, 0.3); /* blue-700 with transparency */
+  --sidebar-bg-active: rgba(14, 77, 136, 0.3);
+
+  /* Icons - match text colors for consistency */
+  --sidebar-icon-default: var(--color-blue-50);
+  --sidebar-icon-hover: #ffffff;
+  --sidebar-icon-active: #ffffff;
+
+  /* Headings */
+  --sidebar-heading: var(--color-blue-50);
+  --sidebar-divider: rgba(255, 255, 255, 0.15);
+
+  /* Checkboxes - lighter blue for completed */
+  --sidebar-checkbox-complete-border: var(--color-blue-200);
+  --sidebar-checkbox-complete-bg: var(--color-blue-100);
+  --sidebar-checkbox-complete-check: var(--color-blue-700);
+  --sidebar-checkbox-incomplete-border: rgba(255, 255, 255, 0.3);
+  --sidebar-checkbox-incomplete-bg: transparent;
+
+  /* Case Summary - slightly darker blue for contrast */
+  --case-summary-bg: var(--color-blue-600);
+  --case-summary-border: rgba(255, 255, 255, 0.1);
+  --case-summary-text-primary: #ffffff;
+  --case-summary-text-secondary: var(--color-blue-50);
+  --case-summary-divider: rgba(255, 255, 255, 0.2);
+}
+
+/* Utility classes for using theme variables */
+.sidebar-themed-bg {
+  background-color: var(--sidebar-bg);
+}
+
+.sidebar-themed-border {
+  border-color: var(--sidebar-border);
+}
+
+.sidebar-themed-text-default {
+  color: var(--sidebar-text-default);
+}
+
+.sidebar-themed-text-hover:hover {
+  color: var(--sidebar-text-hover);
+}
+
+.sidebar-themed-text-active {
+  color: var(--sidebar-text-active);
+}
+
+.sidebar-themed-bg-hover:hover {
+  background-color: var(--sidebar-bg-hover);
+}
+
+.sidebar-themed-bg-active {
+  background-color: var(--sidebar-bg-active);
+}
+
+.sidebar-themed-icon-default {
+  color: var(--sidebar-icon-default);
+}
+
+.sidebar-themed-icon-hover {
+  color: var(--sidebar-icon-hover);
+}
+
+.sidebar-themed-icon-active {
+  color: var(--sidebar-icon-active);
+}
+
+.sidebar-themed-heading {
+  color: var(--sidebar-heading);
+}
+
+.sidebar-themed-divider {
+  border-color: var(--sidebar-divider);
+}
