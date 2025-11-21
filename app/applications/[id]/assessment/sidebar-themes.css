@@ -1,37 +1,42 @@
 /* Sidebar Theme System - CSS Custom Properties */
 /* Allows runtime switching between different sidebar color schemes */
 
-/* Light Theme - Clean white sidebar with blue accents */
+/* Light Theme - Clean blue sidebar with blue accents */
 [data-sidebar-theme='light'] {
-  --sidebar-bg: #ffffff;
-  --sidebar-border: var(--color-gray-100);
+  --sidebar-bg: var(--color-blue-50);
+  --sidebar-border: var(--color-blue-200);
 
   --sidebar-text-default: var(--color-blue-500);
-  --sidebar-text-hover: var(--color-blue-600);
-  --sidebar-text-active: var(--color-gray-900);
+  --sidebar-text-hover: var(--color-blue-700);
+  --sidebar-text-active: #ffffff;
 
-  --sidebar-bg-hover: var(--color-gray-50);
-  --sidebar-bg-active: var(--color-gray-50);
+  --sidebar-bg-hover: var(--color-blue-100);
+  --sidebar-bg-active: var(--color-blue-500);
 
-  --sidebar-icon-default: var(--color-gray-300);
-  --sidebar-icon-hover: var(--color-blue-500);
-  --sidebar-icon-active: var(--color-gray-900);
+  --sidebar-icon-default: var(--color-blue-500);
+  --sidebar-icon-hover: var(--color-blue-700);
+  --sidebar-icon-active: #ffffff;
 
   --sidebar-heading: var(--color-gray-300);
-  --sidebar-divider: var(--color-gray-100);
+  --sidebar-divider: var(--color-blue-200);
 
   --sidebar-checkbox-complete-border: var(--color-blue-400);
   --sidebar-checkbox-complete-bg: var(--color-blue-500);
   --sidebar-checkbox-complete-check: #ffffff;
-  --sidebar-checkbox-incomplete-border: var(--color-gray-200);
+  --sidebar-checkbox-incomplete-border: var(--color-blue-200);
   --sidebar-checkbox-incomplete-bg: transparent;
 
+  /* Completed checkbox when task is active */
+  --sidebar-checkbox-active-complete-border: #ffffff;
+  --sidebar-checkbox-active-complete-bg: #ffffff;
+  --sidebar-checkbox-active-complete-check: var(--color-blue-500);
+
   /* Case Summary */
-  --case-summary-bg: #ffffff;
-  --case-summary-border: var(--color-gray-100);
+  --case-summary-bg: var(--color-blue-50);
+  --case-summary-border: var(--color-blue-200);
   --case-summary-text-primary: var(--color-gray-900);
   --case-summary-text-secondary: var(--color-gray-500);
-  --case-summary-divider: var(--color-gray-200);
+  --case-summary-divider: var(--color-blue-200);
 }
 
 /* Dark Theme - Dark gray sidebar following Tailwind UI dark theme pattern */

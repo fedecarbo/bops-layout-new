@@ -1,18 +1,218 @@
 @import "tailwindcss";
 
-:root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+@theme {
+  /* GOV.UK Design System Color Palette */
+  /* Replaces default Tailwind colors with official GOV.UK colors */
+  /* Reference: https://design-system.service.gov.uk/styles/colour/ */
+
+  /* Blue */
+  --color-blue-50: #f4f8fb;
+  --color-blue-100: #d2e2f1;
+  --color-blue-200: #8eb8dc;
+  --color-blue-300: #5694ca;
+  --color-blue-400: #3d7ebc;
+  --color-blue-500: #1d70b8;   /* Primary blue */
+  --color-blue-600: #155fa1;
+  --color-blue-700: #003078;
+  --color-blue-800: #0f385c;
+  --color-blue-900: #052c53;
+  --color-blue-950: #021c37;
+
+  /* Green */
+  --color-green-50: #f3f9f7;
+  --color-green-100: #cfe7de;
+  --color-green-200: #88c3ad;
+  --color-green-300: #4da583;
+  --color-green-400: #389771;
+  --color-green-500: #11875a;  /* Success green */
+  --color-green-600: #0f7850;
+  --color-green-700: #105840;
+  --color-green-800: #09442d;
+  --color-green-900: #063723;
+  --color-green-950: #042a1a;
+
+  /* Red */
+  --color-red-50: #fcf5f5;
+  --color-red-100: #f4d7d7;
+  --color-red-200: #e59a9a;
+  --color-red-300: #d76868;
+  --color-red-400: #d15353;
+  --color-red-500: #ca3535;    /* Error red */
+  --color-red-600: #b32f2f;
+  --color-red-700: #982828;
+  --color-red-800: #651b1b;
+  --color-red-900: #521414;
+  --color-red-950: #400e0e;
+
+  /* Yellow */
+  --color-yellow-50: #fffdf2;
+  --color-yellow-100: #fff8cc;
+  --color-yellow-200: #ffee80;
+  --color-yellow-300: #ffe640;
+  --color-yellow-400: #ffe22c;
+  --color-yellow-500: #ffdd00;  /* Focus yellow */
+  --color-yellow-600: #c7ab00;
+  --color-yellow-700: #aa9200;
+  --color-yellow-800: #8d7900;
+  --color-yellow-900: #695a00;
+  --color-yellow-950: #534700;
+
+  /* Grey - Adjusted for proper UI lightness scale (borders, backgrounds, text) */
+  /* Maintains GOV.UK aesthetic while matching Tailwind's expected shade usage */
+  --color-gray-50: #F3F3F3;    /* Lightest background */
+  --color-gray-100: #CECECE;   /* Light background, subtle fills */
+  --color-gray-200: #858686;   /* Borders, dividers - LIGHTER for subtle borders */
+  --color-gray-300: #6C6D6D;   /* Hover borders, secondary dividers */
+  --color-gray-400: #484949;   /* Placeholder text, disabled states */
+  --color-gray-500: #434444;   /* Disabled text */
+  --color-gray-600: #3D3E3E;   /* Secondary text */
+  --color-gray-700: #303030;   /* Body text */
+  --color-gray-800: #262626;   /* Headings */
+  --color-gray-900: #191B1B;   /* Primary text */
+  --color-gray-950: #0B0C0C;   /* GOV.UK darkest text */
+
+  /* Zinc mapped to same values for component compatibility */
+  --color-zinc-50: #F3F3F3;
+  --color-zinc-100: #CECECE;
+  --color-zinc-200: #858686;
+  --color-zinc-300: #6C6D6D;
+  --color-zinc-400: #484949;
+  --color-zinc-500: #434444;
+  --color-zinc-600: #525252;
+  --color-zinc-700: #3D3E3E;
+  --color-zinc-800: #262626;
+  --color-zinc-900: #191B1B;
+  --color-zinc-950: #0B0C0C;
+
+  /* Purple */
+  --color-purple-50: #f6f5fa;
+  --color-purple-100: #ddd6ec;
+  --color-purple-200: #aa98cf;
+  --color-purple-300: #7f65b7;
+  --color-purple-400: #6c50ac;
+  --color-purple-500: #54319f;
+  --color-purple-600: #4a2b8d;
+  --color-purple-700: #3f2577;
+  --color-purple-800: #2a1950;
+  --color-purple-900: #211341;
+  --color-purple-950: #180d32;
+
+  /* Magenta (mapped to fuchsia) */
+  --color-fuchsia-50: #fcf5f8;
+  --color-fuchsia-100: #f4d7e5;
+  --color-fuchsia-200: #e59abe;
+  --color-fuchsia-300: #d7689d;
+  --color-fuchsia-400: #d1538e;
+  --color-fuchsia-500: #ca357c;
+  --color-fuchsia-600: #b32f6e;
+  --color-fuchsia-700: #98285d;
+  --color-fuchsia-800: #651b3e;
+  --color-fuchsia-900: #521432;
+  --color-fuchsia-950: #400e26;
+
+  /* Orange */
+  --color-orange-50: #fcf0f2;
+  --color-orange-100: #fde4d7;
+  --color-orange-200: #fabb9c;
+  --color-orange-300: #f7996a;
+  --color-orange-400: #f68955;
+  --color-orange-500: #f47738;
+  --color-orange-600: #f35a10;
+  --color-orange-700: #d14909;
+  --color-orange-800: #ab3906;
+  --color-orange-900: #842b04;
+  --color-orange-950: #752503;
+
+  /* Brown (custom GOV.UK color) */
+  --color-brown-50: #faf8f6;
+  --color-brown-100: #e7ddd3;
+  --color-brown-200: #ccb8a5;
+  --color-brown-300: #c4a78b;
+  --color-brown-400: #b39477;
+  --color-brown-500: #99704a;
+  --color-brown-600: #8f6845;
+  --color-brown-700: #84603f;
+  --color-brown-800: #6a4c31;
+  --color-brown-900: #563d27;
+  --color-brown-950: #442f1d;
+
+  /* Teal (mapped to cyan) */
+  --color-cyan-50: #f3f9f9;
+  --color-cyan-100: #d0e6e7;
+  --color-cyan-200: #8ac0c3;
+  --color-cyan-300: #50a1a5;
+  --color-cyan-400: #3b9297;
+  --color-cyan-500: #158187;
+  --color-cyan-600: #137278;
+  --color-cyan-700: #106165;
+  --color-cyan-800: #0b4144;
+  --color-cyan-900: #073437;
+  --color-cyan-950: #04282a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-  }
+/* Typography defaults - customize font sizes and line heights here */
+/* Modify values in @theme to adjust text sizes globally */
+@theme {
+  /* Text size scale with corresponding line heights */
+  /* Format: --text-{size} and --text-{size}--line-height */
+
+  --text-xs: 1rem;                       /* 16px */
+  --text-xs--line-height: 1.5;
+
+  --text-sm: 1rem;                       /* 16px */
+  --text-sm--line-height: 1.5;
+
+  --text-base: 1.1875rem;                /* 19px - default body text */
+  --text-base--line-height: 1.5;
+
+  --text-lg: 1.5rem;                     /* 24px */
+  --text-lg--line-height: 1.4;
+
+  --text-xl: 1.6875rem;                  /* 27px */
+  --text-xl--line-height: 1.4;
+
+  --text-2xl: 2.25rem;                   /* 36px */
+  --text-2xl--line-height: 1.3;
+
+  --text-3xl: 3rem;                      /* 48px */
+  --text-3xl--line-height: 1.2;
+
+  --text-4xl: 3.75rem;                   /* 60px */
+  --text-4xl--line-height: 1.1;
+
+  --text-5xl: 4.5rem;                    /* 72px */
+  --text-5xl--line-height: 1;
+
+  --text-6xl: 5rem;                      /* 80px */
+  --text-6xl--line-height: 1;
+
+  --text-7xl: 5rem;                      /* 80px - largest */
+  --text-7xl--line-height: 1;
+
+  --text-8xl: 5rem;                      /* 80px - largest */
+  --text-8xl--line-height: 1;
+
+  --text-9xl: 5rem;                      /* 80px - largest */
+  --text-9xl--line-height: 1;
+
+  /* Leading (line-height) utilities */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
 }
 
+/* Map Next.js font variable to Tailwind utilities */
+@theme inline {
+  --font-sans: var(--font-open-sans);
+}
+
+/* Apply base typography styles */
 body {
-  color: rgb(var(--foreground));
-  background: rgb(var(--background));
+  color: var(--color-gray-950);
+  background: #ffffff;
+  font-size: var(--text-base);
+  line-height: var(--line-height-normal);
 }

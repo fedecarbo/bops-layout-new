@@ -157,16 +157,16 @@ function AssessmentLayoutInner({
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
-              <h1 className="text-xl font-semibold text-white">
+              <h1 className="text-xl font-bold text-white">
                 Back Office Planning System
               </h1>
             </div>
             <div className="flex items-center gap-3">
               <SidebarThemeSwitcher />
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-700 text-base font-medium text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-700 text-base text-white">
                 {currentUser.name.split(' ').map(n => n[0]).join('')}
               </div>
-              <div className="text-base font-medium text-white">
+              <div className="text-base text-white">
                 {currentUser.name}
               </div>
               <a href="#logout" className="text-sm text-zinc-400 hover:text-white">
@@ -187,9 +187,9 @@ function AssessmentLayoutInner({
       >
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="py-4">
-            <div className="flex items-center gap-3 text-lg">
+            <div className="flex items-center gap-3 text-base">
               <span
-                className="font-semibold"
+                className="font-bold"
                 style={{ color: 'var(--case-summary-text-primary)' }}
               >
                 {application.reference}
@@ -242,7 +242,7 @@ function AssessmentLayoutInner({
                         <li key={item.name}>
                           <Component
                             href={item.href}
-                            className="group flex gap-x-3 rounded-md p-2 text-base"
+                            className="group flex gap-x-3 rounded-none p-2 text-sm"
                             style={{
                               backgroundColor: item.current ? 'var(--sidebar-bg-active)' : 'transparent',
                               color: item.current ? 'var(--sidebar-text-active)' : 'var(--sidebar-text-default)',
@@ -271,7 +271,7 @@ function AssessmentLayoutInner({
                             {item.count ? (
                               <span
                                 aria-hidden="true"
-                                className="ml-auto w-9 min-w-max rounded-full bg-white px-2.5 py-0.5 text-center text-xs/5 font-medium whitespace-nowrap text-blue-700 ring-1 ring-inset ring-blue-600/30"
+                                className="ml-auto w-9 min-w-max rounded-full bg-white px-2 py-0.5 text-center text-xs whitespace-nowrap text-blue-700 ring-1 ring-inset ring-blue-600/30"
                               >
                                 {item.count}
                               </span>
@@ -293,7 +293,7 @@ function AssessmentLayoutInner({
                           <li key={task.name}>
                             <Link
                               href={getTaskHref(applicationId, task.href)}
-                              className="group flex gap-x-3 rounded-md p-2 text-base"
+                              className="group flex gap-x-3 rounded-none p-2 text-sm"
                               style={{
                                 backgroundColor: isCurrentTask ? 'var(--sidebar-bg-active)' : 'transparent',
                                 color: isCurrentTask ? 'var(--sidebar-text-active)' : 'var(--sidebar-text-default)',
@@ -302,12 +302,18 @@ function AssessmentLayoutInner({
                               <span
                                 className="flex size-6 shrink-0 items-center justify-center rounded border"
                                 style={{
-                                  borderColor: task.completed ? 'var(--sidebar-checkbox-complete-border)' : 'var(--sidebar-checkbox-incomplete-border)',
-                                  backgroundColor: task.completed ? 'var(--sidebar-checkbox-complete-bg)' : 'var(--sidebar-checkbox-incomplete-bg)',
+                                  borderColor: task.completed
+                                    ? (isCurrentTask ? 'var(--sidebar-checkbox-active-complete-border)' : 'var(--sidebar-checkbox-complete-border)')
+                                    : 'var(--sidebar-checkbox-incomplete-border)',
+                                  backgroundColor: task.completed
+                                    ? (isCurrentTask ? 'var(--sidebar-checkbox-active-complete-bg)' : 'var(--sidebar-checkbox-complete-bg)')
+                                    : 'var(--sidebar-checkbox-incomplete-bg)',
                                 }}
                               >
                                 {task.completed && (
-                                  <CheckIcon aria-hidden="true" className="size-4" style={{ color: 'var(--sidebar-checkbox-complete-check)' }} />
+                                  <CheckIcon aria-hidden="true" className="size-4" style={{
+                                    color: isCurrentTask ? 'var(--sidebar-checkbox-active-complete-check)' : 'var(--sidebar-checkbox-complete-check)'
+                                  }} />
                                 )}
                               </span>
                               <span className="truncate">{task.name}</span>
@@ -382,7 +388,7 @@ function AssessmentLayoutInner({
                       <li key={item.name}>
                         <Component
                           href={item.href}
-                          className="group flex gap-x-3 rounded-md p-2 text-base"
+                          className="group flex gap-x-3 rounded-md p-2 text-sm"
                           style={{
                             backgroundColor: item.current ? 'var(--sidebar-bg-active)' : 'transparent',
                             color: item.current ? 'var(--sidebar-text-active)' : 'var(--sidebar-text-default)',
@@ -419,7 +425,7 @@ function AssessmentLayoutInner({
                           {item.count ? (
                             <span
                               aria-hidden="true"
-                              className="ml-auto w-9 min-w-max rounded-full bg-white px-2.5 py-0.5 text-center text-xs/5 font-medium whitespace-nowrap text-blue-700 ring-1 ring-inset ring-blue-600/30"
+                              className="ml-auto w-9 min-w-max rounded-full bg-white px-2 py-0.5 text-center text-xs whitespace-nowrap text-blue-700 ring-1 ring-inset ring-blue-600/30"
                             >
                               {item.count}
                             </span>
@@ -441,7 +447,7 @@ function AssessmentLayoutInner({
                         <li key={task.name}>
                           <Link
                             href={getTaskHref(applicationId, task.href)}
-                            className="group flex gap-x-3 rounded-md p-2 text-base"
+                            className="group flex gap-x-3 rounded-none p-2 text-sm"
                             style={{
                               backgroundColor: isCurrentTask ? 'var(--sidebar-bg-active)' : 'transparent',
                               color: isCurrentTask ? 'var(--sidebar-text-active)' : 'var(--sidebar-text-default)',
@@ -462,12 +468,18 @@ function AssessmentLayoutInner({
                             <span
                               className="flex size-6 shrink-0 items-center justify-center rounded border"
                               style={{
-                                borderColor: task.completed ? 'var(--sidebar-checkbox-complete-border)' : 'var(--sidebar-checkbox-incomplete-border)',
-                                backgroundColor: task.completed ? 'var(--sidebar-checkbox-complete-bg)' : 'var(--sidebar-checkbox-incomplete-bg)',
+                                borderColor: task.completed
+                                  ? (isCurrentTask ? 'var(--sidebar-checkbox-active-complete-border)' : 'var(--sidebar-checkbox-complete-border)')
+                                  : 'var(--sidebar-checkbox-incomplete-border)',
+                                backgroundColor: task.completed
+                                  ? (isCurrentTask ? 'var(--sidebar-checkbox-active-complete-bg)' : 'var(--sidebar-checkbox-complete-bg)')
+                                  : 'var(--sidebar-checkbox-incomplete-bg)',
                               }}
                             >
                               {task.completed && (
-                                <CheckIcon aria-hidden="true" className="size-4" style={{ color: 'var(--sidebar-checkbox-complete-check)' }} />
+                                <CheckIcon aria-hidden="true" className="size-4" style={{
+                                  color: isCurrentTask ? 'var(--sidebar-checkbox-active-complete-check)' : 'var(--sidebar-checkbox-complete-check)'
+                                }} />
                               )}
                             </span>
                             <span className="truncate">{task.name}</span>
@@ -517,20 +529,20 @@ function AssessmentLayoutInner({
               <div className="lg:flex lg:items-center lg:justify-between">
                 <div className="min-w-0 flex-1">
                   {/* Page Title */}
-                  <h2 className="text-3xl font-bold text-zinc-900 sm:truncate sm:text-4xl sm:tracking-tight">
+                  <h2 className="text-2xl font-bold text-zinc-900 sm:truncate sm:tracking-tight">
                     {pageTitle}
                   </h2>
 
                   {/* Page Description (for non-task pages like Notes, Overview, etc.) */}
                   {pageDescription && !currentTaskId && (
-                    <p className="mt-2 text-lg text-zinc-600">
+                    <p className="mt-2 text-base text-zinc-600">
                       {pageDescription}
                     </p>
                   )}
 
                   {/* Task Description */}
                   {currentTask && (
-                    <p className="mt-2 text-lg text-zinc-600">
+                    <p className="mt-2 text-base text-zinc-600">
                       {currentTask.description}
                     </p>
                   )}
@@ -540,12 +552,12 @@ function AssessmentLayoutInner({
                     <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
                       <span className={cn(
                         taskStatus.classes,
-                        'inline-flex items-center rounded-md px-2 py-1 text-lg font-normal ring-1 ring-inset'
+                        'inline-flex items-center rounded-none px-2 py-1 text-base font-normal ring-1 ring-inset'
                       )}>
                         {taskStatus.label}
                       </span>
                       {taskLastSaved && (
-                        <span className="text-lg text-zinc-500">
+                        <span className="text-base text-zinc-500">
                           Last saved: {formatLastSaved(taskLastSaved)}
                         </span>
                       )}
