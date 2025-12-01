@@ -11,7 +11,6 @@ import {
   InboxIcon,
   BellIcon,
   DocumentTextIcon,
-  CheckIcon,
   DocumentChartBarIcon,
 } from '@heroicons/react/24/outline'
 import {
@@ -30,8 +29,7 @@ import { mockUsers } from '@/lib/mock-data/users'
 import { Button } from '@/components/catalyst/button'
 import { getUnreadNotesCount } from '@/lib/mock-data/notes'
 import { useAssessment, getTaskHref } from './AssessmentContext'
-import { useSidebarTheme } from './SidebarThemeContext'
-import { SidebarThemeSwitcher } from './SidebarThemeSwitcher'
+import { NotificationCenter } from '@/components/notifications/NotificationCenter'
 import { cn } from '@/lib/utils'
 import './sidebar-themes.css'
 
@@ -40,7 +38,7 @@ const getNavigation = (applicationId: string) => [
   { name: 'Overview', href: `/applications/${applicationId}/assessment`, icon: HomeIcon, current: true },
   { name: 'Meetings', href: '#meetings', icon: UserGroupIcon, count: '2', current: false },
   { name: 'Requests', href: '#requests', icon: InboxIcon, count: '5', current: false },
-  { name: 'Activity', href: '#activity', icon: BellIcon, current: false },
+  { name: 'Activity feed', href: `/applications/${applicationId}/assessment/activity`, icon: BellIcon, current: false },
   { name: 'Notes', href: `/applications/${applicationId}/assessment/notes`, icon: DocumentTextIcon, current: false },
   { name: 'Preview report', href: '#preview-report', icon: DocumentChartBarIcon, current: false },
 ]
@@ -52,7 +50,7 @@ interface AssessmentLayoutProps {
   pageTitle?: string
   pageDescription?: string
   onComplete?: () => void
-  currentPage?: 'overview' | 'notes' | 'meetings' | 'requests' | 'activity' | 'preview report'
+  currentPage?: 'overview' | 'notes' | 'meetings' | 'requests' | 'activity feed' | 'preview report'
 }
 
 function AssessmentLayoutInner({
@@ -66,7 +64,6 @@ function AssessmentLayoutInner({
 }: AssessmentLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { tasks, toggleTask, saveTask, sidebarScrollPosition, setSidebarScrollPosition } = useAssessment()
-  const { theme } = useSidebarTheme()
   const sidebarRef = useRef<HTMLDivElement>(null)
 
   // Get mock data for the application
@@ -151,7 +148,7 @@ function AssessmentLayoutInner({
   }
 
   return (
-    <div className="h-screen flex flex-col bg-white" data-sidebar-theme={theme}>
+    <div className="h-screen flex flex-col bg-white">
       {/* Header - Sticky */}
       <header className="sticky top-0 z-50 bg-zinc-900" style={{ borderBottom: '10px solid #1d70b8' }}>
         <div className="px-4 sm:px-6 lg:px-8">
@@ -162,14 +159,11 @@ function AssessmentLayoutInner({
               </h1>
             </div>
             <div className="flex items-center gap-3">
-              <SidebarThemeSwitcher />
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-700 text-base text-white">
-                {currentUser.name.split(' ').map(n => n[0]).join('')}
-              </div>
+              <NotificationCenter userId={currentUser.id} />
               <div className="text-base text-white">
                 {currentUser.name}
               </div>
-              <a href="#logout" className="text-sm text-zinc-400 hover:text-white">
+              <a href="#logout" className="text-sm text-white hover:text-zinc-300">
                 Log out
               </a>
             </div>
@@ -222,9 +216,8 @@ function AssessmentLayoutInner({
               </button>
             </div>
 
-            {/* Themed Sidebar (Mobile) */}
+            {/* Sidebar (Mobile) */}
             <div
-              data-sidebar-theme={theme}
               className="relative flex grow flex-col gap-y-5 overflow-y-auto px-6 border-r"
               style={{
                 backgroundColor: 'var(--sidebar-bg)',
@@ -311,7 +304,7 @@ function AssessmentLayoutInner({
                                 }}
                               >
                                 {task.completed && (
-                                  <CheckIcon aria-hidden="true" className="size-4" style={{
+                                  <CheckIconSolid aria-hidden="true" className="size-4" style={{
                                     color: isCurrentTask ? 'var(--sidebar-checkbox-active-complete-check)' : 'var(--sidebar-checkbox-complete-check)'
                                   }} />
                                 )}
@@ -366,11 +359,10 @@ function AssessmentLayoutInner({
 
       {/* Sidebar + Main Content Container - Flex row with independent scrolling */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Desktop Themed Sidebar - Full height with independent scroll */}
+        {/* Desktop Sidebar - Full height with independent scroll */}
         <aside className="hidden lg:flex lg:w-80 lg:shrink-0 lg:flex-col">
           <div
             ref={sidebarRef}
-            data-sidebar-theme={theme}
             className="flex flex-1 flex-col overflow-y-auto px-6 py-6 border-r"
             style={{
               backgroundColor: 'var(--sidebar-bg)',
@@ -477,7 +469,7 @@ function AssessmentLayoutInner({
                               }}
                             >
                               {task.completed && (
-                                <CheckIcon aria-hidden="true" className="size-4" style={{
+                                <CheckIconSolid aria-hidden="true" className="size-4" style={{
                                   color: isCurrentTask ? 'var(--sidebar-checkbox-active-complete-check)' : 'var(--sidebar-checkbox-complete-check)'
                                 }} />
                               )}

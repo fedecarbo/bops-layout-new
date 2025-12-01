@@ -6,9 +6,9 @@ import { Link } from './link'
 const styles = {
   base: [
     // Base
-    'relative isolate inline-flex items-baseline justify-center gap-x-2 rounded-lg border text-base/6 font-semibold',
+    'relative isolate inline-flex items-baseline justify-center gap-x-2 rounded-none border text-base font-normal',
     // Sizing
-    'px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)] sm:text-sm/6',
+    'px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
     // Focus
     'focus:not-data-focus:outline-hidden data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-blue-500',
     // Disabled
@@ -17,36 +17,34 @@ const styles = {
     '*:data-[slot=icon]:-mx-0.5 *:data-[slot=icon]:my-0.5 *:data-[slot=icon]:size-5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center *:data-[slot=icon]:text-(--btn-icon) sm:*:data-[slot=icon]:my-1 sm:*:data-[slot=icon]:size-4 forced-colors:[--btn-icon:ButtonText] forced-colors:data-hover:[--btn-icon:ButtonText]',
   ],
   solid: [
-    // Optical border, implemented as the button background to avoid corner artifacts
-    'border-transparent bg-(--btn-border)',
-    // Dark mode: border is rendered on `after` so background is set to button background
-    'dark:bg-(--btn-bg)',
-    // Button background, implemented as foreground layer to stack on top of pseudo-border layer
-    'before:absolute before:inset-0 before:-z-10 before:rounded-[calc(var(--radius-lg)-1px)] before:bg-(--btn-bg)',
-    // Drop shadow, applied to the inset `before` layer so it blends with the border
-    'before:shadow-sm',
-    // Background color is moved to control and shadow is removed in dark mode so hide `before` pseudo
-    'dark:before:hidden',
-    // Dark mode: Subtle white outline is applied using a border
-    'dark:border-white/5',
-    // Shim/overlay, inset to match button foreground and used for hover state + highlight shadow
-    'after:absolute after:inset-0 after:-z-10 after:rounded-[calc(var(--radius-lg)-1px)]',
-    // Inner highlight shadow
-    'after:shadow-[inset_0_1px_--theme(--color-white/15%)]',
-    // White overlay on hover
+    // UK Gov style - simple background with bottom shadow
+    'border-transparent bg-(--btn-bg)',
+    'shadow-[0_2px_0_var(--btn-shadow,#002d18)]',
+    // Hover overlay
+    'relative isolate',
+    'after:absolute after:inset-0 after:-z-10 after:rounded-none',
     'data-active:after:bg-(--btn-hover-overlay) data-hover:after:bg-(--btn-hover-overlay)',
-    // Dark mode: `after` layer expands to cover entire button
-    'dark:after:-inset-px dark:after:rounded-lg',
+    // Dark mode
+    'dark:bg-(--btn-bg)',
+    'dark:border-white/5',
+    'dark:after:-inset-px dark:after:rounded-none',
     // Disabled
-    'data-disabled:before:shadow-none data-disabled:after:shadow-none',
+    'data-disabled:shadow-none',
   ],
   outline: [
-    // Base
-    'border-zinc-950/10 text-zinc-950 data-active:bg-zinc-950/2.5 data-hover:bg-zinc-950/2.5',
-    // Dark mode
-    'dark:border-white/15 dark:text-white dark:[--btn-bg:transparent] dark:data-active:bg-white/5 dark:data-hover:bg-white/5',
+    // UK Gov Secondary button - light gray with shadow
+    'border-transparent text-[#0b0c0c] bg-[#f3f2f1]',
+    'shadow-[0_2px_0_#929191]',
+    // Hover overlay
+    'relative isolate',
+    'after:absolute after:inset-0 after:-z-10 after:rounded-none',
+    'data-active:after:bg-zinc-950/5 data-hover:after:bg-zinc-950/5',
+    // Dark mode - keep same styling as light mode
+    'dark:border-transparent dark:text-[#0b0c0c] dark:bg-[#f3f2f1]',
     // Icon
-    '[--btn-icon:var(--color-zinc-500)] data-active:[--btn-icon:var(--color-zinc-700)] data-hover:[--btn-icon:var(--color-zinc-700)] dark:data-active:[--btn-icon:var(--color-zinc-400)] dark:data-hover:[--btn-icon:var(--color-zinc-400)]',
+    '[--btn-icon:var(--color-zinc-700)] data-active:[--btn-icon:var(--color-zinc-900)] data-hover:[--btn-icon:var(--color-zinc-900)]',
+    // Disabled
+    'data-disabled:shadow-none',
   ],
   plain: [
     // Base
@@ -58,9 +56,10 @@ const styles = {
   ],
   colors: {
     'dark/zinc': [
-      'text-white [--btn-bg:var(--color-zinc-900)] [--btn-border:var(--color-zinc-950)]/90 [--btn-hover-overlay:var(--color-white)]/10',
-      'dark:text-white dark:[--btn-bg:var(--color-zinc-600)] dark:[--btn-hover-overlay:var(--color-white)]/5',
-      '[--btn-icon:var(--color-zinc-400)] data-active:[--btn-icon:var(--color-zinc-300)] data-hover:[--btn-icon:var(--color-zinc-300)]',
+      // UK Gov Green primary button
+      'text-white [--btn-bg:#00703c] [--btn-border:#00703c] [--btn-shadow:#002d18] [--btn-hover-overlay:var(--color-white)]/10',
+      'dark:text-white dark:[--btn-bg:#00703c] dark:[--btn-hover-overlay:var(--color-white)]/5',
+      '[--btn-icon:var(--color-white)] data-active:[--btn-icon:var(--color-white)] data-hover:[--btn-icon:var(--color-white)]',
     ],
     light: [
       'text-zinc-950 [--btn-bg:white] [--btn-border:var(--color-zinc-950)]/10 [--btn-hover-overlay:var(--color-zinc-950)]/2.5 data-active:[--btn-border:var(--color-zinc-950)]/15 data-hover:[--btn-border:var(--color-zinc-950)]/15',
